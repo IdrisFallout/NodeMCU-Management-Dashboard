@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .toggle-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background-color: #ccc;
+            border-radius: 30px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .toggle-switch:before {
+            content: "";
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: white;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.2s ease;
+        }
+
+        .toggle-switch.on {
+            background-color: #3fbf3f;
+        }
+
+        .toggle-switch.on:before {
+            transform: translateX(30px);
+        }
+
+        .toggle-label {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="toggle-container">
+    <div class="toggle-switch" id="toggleButton"></div>
+    <span class="toggle-label" id="toggleText">Off</span>
+</div>
+
+<script>
+    var toggleButton = document.getElementById("toggleButton");
+    var toggleText = document.getElementById("toggleText");
+    var switchOn = false;
+
+    var on_url = "http://192.168.43.239/1";
+    var off_url = "http://192.168.43.239/0";
+
+    function updateSwitch(url) {
+        fetch(url)
+            .then(response => {
+                // console.log("Fetch request sent to {on_url}");
+                // Handle the response if needed
+            })
+            .catch(error => {
+                // console.error("Error occurred while sending the fetch request:", error);
+            });
+    }
+
+    toggleButton.addEventListener("click", function () {
+        switchOn = !switchOn;
+        toggleButton.classList.toggle("on", switchOn);
+        toggleText.textContent = switchOn ? "On" : "Off";
+
+
+        if (switchOn) {
+            updateSwitch(on_url);
+        } else {
+            updateSwitch(off_url);
+        }
+    });
+</script>
+
+</body>
+</html>
