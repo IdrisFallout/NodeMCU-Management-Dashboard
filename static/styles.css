@@ -1,0 +1,45 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.toggle-switch:before {
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: white;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.2s ease;
+}
+
+.toggle-switch.on {
+    background-color: #3fbf3f;
+}
+
+.toggle-switch.on:before {
+    transform: translateX(30px);
+}
+
+.toggle-label {
+    font-size: 14px;
+}
